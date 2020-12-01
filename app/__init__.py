@@ -1,3 +1,5 @@
+'''microblog with blueprints'''
+
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
