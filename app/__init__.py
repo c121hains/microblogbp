@@ -39,6 +39,10 @@ def create_app(config_class=Config):
     from app.errors import bp as errors_bp
     app.register_blueprint(errors_bp)
 
+    '''The register_blueprint() call in this case has an extra argument, url_prefix. 
+    This is entirely optional, but Flask gives you the option to attach a blueprint under a URL prefix, so any routes defined in the 
+    blueprint get this prefix in their URLs. In many cases this is useful as a sort of "namespacing" that keeps all the routes in the 
+    blueprint separated from other routes in the application or other blueprints.'''
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')
 
