@@ -11,6 +11,7 @@ from flask_mail import Mail
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_babel import Babel, lazy_gettext as _l
+from elasticsearch import Elasticsearch
 from config import Config
 
 db = SQLAlchemy()
@@ -27,6 +28,11 @@ babel = Babel()
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
+
+    '''Adding a new attribute to the app instance may seem a little strange, but Python objects are not strict in their structure, 
+    new attributes can be added to them at any time. '''
+    #using conditional expression below
+    app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) if app.config['ELASTICSEARCH_URL'] else None
 
     db.init_app(app)
     migrate.init_app(app, db)
