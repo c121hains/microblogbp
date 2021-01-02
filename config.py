@@ -19,3 +19,4 @@ class Config(object):
     MS_TRANSLATOR_KEY = os.environ.get('MS_TRANSLATOR_KEY')
     POSTS_PER_PAGE = 3
     ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL') or 'http://127.0.0.1:9200/'
+    LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
